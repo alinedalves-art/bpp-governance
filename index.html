@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BPP Buyers — Governança</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="header-title">
+        <span class="header-tag">BPP · Buyers</span>
+        <h1>Governança de Gastos</h1>
+      </div>
+      <div class="header-meta">
+        <span id="last-updated"></span>
+      </div>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="ratio">Ratio vs. Target</button>
+    <button class="tab" data-tab="causa">Custo por Causa</button>
+    <button class="tab" data-tab="oficina">Por Oficina</button>
+    <button class="tab" data-tab="canal">Por Canal</button>
+    <button class="tab" data-tab="manager">Por SR Manager</button>
+  </nav>
+
+  <main>
+
+    <!-- RATIO VS TARGET -->
+    <section id="tab-ratio" class="tab-content active">
+      <div class="section-header">
+        <h2>Ratio Realizado vs. Target</h2>
+        <div class="filters">
+          <select id="ratio-tipo">
+            <option value="PDD">PDD</option>
+            <option value="PNR">PNR</option>
+          </select>
+        </div>
+      </div>
+      <div class="kpi-row" id="kpi-ratio"></div>
+      <div class="chart-card full">
+        <canvas id="chart-ratio"></canvas>
+      </div>
+      <div class="chart-card full">
+        <h3>Variação vs. Target (pp)</h3>
+        <canvas id="chart-variacao"></canvas>
+      </div>
+    </section>
+
+    <!-- CUSTO POR CAUSA -->
+    <section id="tab-causa" class="tab-content">
+      <div class="section-header">
+        <h2>Custo por Causa</h2>
+        <div class="filters">
+          <select id="causa-mes"></select>
+          <select id="causa-tipo">
+            <option value="">Todos os tipos</option>
+            <option value="APLICACIONES">APLICACIONES</option>
+            <option value="RECUPEROS">RECUPEROS</option>
+            <option value="BONIFICADOR">BONIFICADOR</option>
+          </select>
+        </div>
+      </div>
+      <div class="chart-card full">
+        <canvas id="chart-causa"></canvas>
+      </div>
+    </section>
+
+    <!-- POR OFICINA -->
+    <section id="tab-oficina" class="tab-content">
+      <div class="section-header">
+        <h2>Custo por Oficina</h2>
+        <div class="filters">
+          <select id="oficina-mes"></select>
+        </div>
+      </div>
+      <div class="charts-grid">
+        <div class="chart-card">
+          <h3>Cashout USD por Oficina</h3>
+          <canvas id="chart-oficina"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Distribuição por Centro</h3>
+          <canvas id="chart-centro"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- POR CANAL -->
+    <section id="tab-canal" class="tab-content">
+      <div class="section-header">
+        <h2>Custo por Canal</h2>
+        <div class="filters">
+          <select id="canal-mes"></select>
+        </div>
+      </div>
+      <div class="charts-grid">
+        <div class="chart-card">
+          <h3>Cashout USD por Canal</h3>
+          <canvas id="chart-canal"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Canal × Tipo</h3>
+          <canvas id="chart-canal-tipo"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- POR SR MANAGER -->
+    <section id="tab-manager" class="tab-content">
+      <div class="section-header">
+        <h2>Custo por SR Manager</h2>
+        <div class="filters">
+          <select id="manager-mes"></select>
+        </div>
+      </div>
+      <div class="chart-card full">
+        <canvas id="chart-manager"></canvas>
+      </div>
+      <div class="chart-card full">
+        <h3>Evolução Mensal por SR Manager</h3>
+        <canvas id="chart-manager-trend"></canvas>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/data/layer1.js"></script>
+  <script src="js/data/layer2.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
