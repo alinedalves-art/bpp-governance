@@ -38,8 +38,17 @@
         <h2>Ratio Realizado vs. Target</h2>
         <div class="filters">
           <select id="ratio-tipo">
+            <option value="MED">MED (PDD + PNR)</option>
             <option value="PDD">PDD</option>
             <option value="PNR">PNR</option>
+          </select>
+          <select id="ratio-centro">
+            <option value="">Todos os Centros</option>
+            <option value="Brasil">Brasil</option>
+            <option value="Hispanos">Hispanos</option>
+          </select>
+          <select id="ratio-manager">
+            <option value="">Todos os SR Managers</option>
           </select>
         </div>
       </div>
@@ -51,6 +60,10 @@
         <h3>Variação vs. Target (pp)</h3>
         <canvas id="chart-variacao"></canvas>
       </div>
+      <div class="section-subheader"><h3>Cashout por SR Manager</h3></div>
+      <div class="chart-card full">
+        <canvas id="chart-ratio-manager"></canvas>
+      </div>
     </section>
 
     <!-- CUSTO POR CAUSA -->
@@ -59,6 +72,11 @@
         <h2>Custo por Causa</h2>
         <div class="filters">
           <select id="causa-mes"></select>
+          <select id="causa-centro">
+            <option value="">Todos os Centros</option>
+            <option value="Brasil">Brasil</option>
+            <option value="Hispanos">Hispanos</option>
+          </select>
           <select id="causa-tipo">
             <option value="">Todos os tipos</option>
             <option value="APLICACIONES">APLICACIONES</option>
@@ -70,45 +88,64 @@
       <div class="chart-card full">
         <canvas id="chart-causa"></canvas>
       </div>
+      <div class="section-subheader">
+        <h3>Alerta: Mês atual vs. Média últimos 6 meses</h3>
+        <span class="badge-info">Barras vermelhas indicam causas acima da média histórica</span>
+      </div>
+      <div class="chart-card full">
+        <canvas id="chart-causa-alerta"></canvas>
+      </div>
     </section>
 
     <!-- POR OFICINA -->
     <section id="tab-oficina" class="tab-content">
       <div class="section-header">
-        <h2>Custo por Oficina</h2>
+        <h2>Custo por Causa × Oficina</h2>
         <div class="filters">
           <select id="oficina-mes"></select>
+          <select id="oficina-centro">
+            <option value="">Todos os Centros</option>
+            <option value="Brasil">Brasil</option>
+            <option value="Hispanos">Hispanos</option>
+          </select>
+          <select id="oficina-causa">
+            <option value="">Todas as Causas</option>
+          </select>
         </div>
       </div>
-      <div class="charts-grid">
-        <div class="chart-card">
-          <h3>Cashout USD por Oficina</h3>
-          <canvas id="chart-oficina"></canvas>
-        </div>
-        <div class="chart-card">
-          <h3>Distribuição por Centro</h3>
-          <canvas id="chart-centro"></canvas>
-        </div>
+      <div class="chart-card full">
+        <h3>Causas por Oficina (stacked)</h3>
+        <canvas id="chart-oficina-causa"></canvas>
+      </div>
+      <div class="chart-card full">
+        <h3>Alerta: Oficina vs. Média últimos 6 meses</h3>
+        <canvas id="chart-oficina-alerta"></canvas>
       </div>
     </section>
 
     <!-- POR CANAL -->
     <section id="tab-canal" class="tab-content">
       <div class="section-header">
-        <h2>Custo por Canal</h2>
+        <h2>Custo por Causa × Canal</h2>
         <div class="filters">
           <select id="canal-mes"></select>
+          <select id="canal-centro">
+            <option value="">Todos os Centros</option>
+            <option value="Brasil">Brasil</option>
+            <option value="Hispanos">Hispanos</option>
+          </select>
+          <select id="canal-causa">
+            <option value="">Todas as Causas</option>
+          </select>
         </div>
       </div>
-      <div class="charts-grid">
-        <div class="chart-card">
-          <h3>Cashout USD por Canal</h3>
-          <canvas id="chart-canal"></canvas>
-        </div>
-        <div class="chart-card">
-          <h3>Canal × Tipo</h3>
-          <canvas id="chart-canal-tipo"></canvas>
-        </div>
+      <div class="chart-card full">
+        <h3>Causas por Canal (stacked)</h3>
+        <canvas id="chart-canal-causa"></canvas>
+      </div>
+      <div class="chart-card full">
+        <h3>Alerta: Canal vs. Média últimos 6 meses</h3>
+        <canvas id="chart-canal-alerta"></canvas>
       </div>
     </section>
 
@@ -118,6 +155,11 @@
         <h2>Custo por SR Manager</h2>
         <div class="filters">
           <select id="manager-mes"></select>
+          <select id="manager-centro">
+            <option value="">Todos os Centros</option>
+            <option value="Brasil">Brasil</option>
+            <option value="Hispanos">Hispanos</option>
+          </select>
         </div>
       </div>
       <div class="chart-card full">
@@ -132,6 +174,7 @@
   </main>
 
   <script src="js/data/layer1.js"></script>
+  <script src="js/data/layer1_manager.js"></script>
   <script src="js/data/layer2.js"></script>
   <script src="js/main.js"></script>
 </body>
