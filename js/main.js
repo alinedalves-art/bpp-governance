@@ -278,7 +278,9 @@ function renderRatioManager(tipo, centro) {
     byManager[m] = (byManager[m]||0) + parseFloat(d.cashout_usd||0);
   });
 
+  const total = Object.values(byManager).reduce((s,v)=>s+v,0);
   const sorted = Object.entries(byManager).sort((a,b)=>b[1]-a[1]);
+  const pcts = sorted.map(d => total > 0 ? d[1]/total : 0);
 
   destroyChart('chart-ratio-manager');
   new Chart(document.getElementById('chart-ratio-manager'), {
@@ -286,8 +288,8 @@ function renderRatioManager(tipo, centro) {
     data: {
       labels: sorted.map(d=>d[0]),
       datasets: [{
-        label: 'Cashout USD (últimos 12 meses)',
-        data: sorted.map(d=>d[1]),
+        label: '% do Cashout Total (últimos 12 meses)',
+        data: pcts,
         backgroundColor: sorted.map((_,i)=>getColor(i)+'CC'),
         borderRadius: 6,
       }]
@@ -298,12 +300,13 @@ function renderRatioManager(tipo, centro) {
       plugins: {
         datalabels: {
           display: true, anchor:'end', align:'right',
-          formatter: v=>fmtUSD(v), font:{size:11}, color:'#333',
+          formatter: v => (v*100).toFixed(1)+'%',
+          font:{size:11}, color:'#333',
         },
         legend: { display: false },
       },
       scales: {
-        x: { ticks:{callback:v=>fmtUSD(v)}, grid:{color:'#eee'} },
+        x: { ticks:{callback:v=>(v*100).toFixed(0)+'%'}, grid:{color:'#eee'}, max:1 },
         y: { grid:{display:false} }
       }
     }
